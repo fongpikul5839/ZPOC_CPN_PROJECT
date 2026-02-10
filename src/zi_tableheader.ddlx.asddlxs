@@ -1,0 +1,133 @@
+@Metadata.layer: #CUSTOMER
+
+@UI: {
+  headerInfo: {
+    typeName: 'TableHeader',
+    typeNamePlural: 'TableHeaders',
+    title: {
+      type: #STANDARD,
+      label: 'Table Header',
+      value: 'Uuid'
+    }
+  }
+}
+annotate view ZI_TableHeader with
+{
+  @UI.identification: [ {
+    position: 1
+  } ]
+  @UI.lineItem: [ {
+    position: 1
+  } ]
+  @UI.facet: [ {
+    id: 'ZI_TableHeader',
+    purpose: #STANDARD,
+    type: #IDENTIFICATION_REFERENCE,
+    label: 'Table Header',
+    position: 1
+  } ]
+  Uuid;
+
+  @UI.identification: [ {
+    position: 2 ,
+    label: 'DocumentNo'
+  } ]
+  @UI.lineItem: [ {
+    position: 2 ,
+    label: 'DocumentNo'
+  } ]
+  @UI.facet: [ {
+  id: 'ZI_TableHeader',
+  purpose: #STANDARD,
+  type: #IDENTIFICATION_REFERENCE,
+  label: 'Table Header',
+  position: 2
+} ]
+  DocumentNo;
+
+  @UI.identification: [ {
+    position: 3 ,
+    label: 'Single01'
+  } ]
+  @UI.lineItem: [ {
+    position: 3 ,
+    label: 'Single01'
+  } ]
+  Single01;
+
+  @UI.identification: [ {
+    position: 4 ,
+    label: 'Single02'
+  } ]
+  @UI.lineItem: [ {
+    position: 4 ,
+    label: 'Single02'
+  } ]
+  Single02;
+
+  @UI.identification: [ {
+    position: 5 ,
+    label: 'Comment01'
+  } ]
+  @UI.lineItem: [ {
+    position: 5 ,
+    label: 'Comment01'
+  } ]
+  Comment01;
+
+  @UI.identification: [ {
+    position: 6 ,
+    label: 'RbChoice01'
+  } ]
+  @UI.lineItem: [ {
+    position: 6 ,
+    label: 'RbChoice01'
+  } ]
+  rbchoice01;
+
+  @UI.identification: [ {
+    position: 7 ,
+    label: 'RbChoice02'
+  } ]
+  @UI.lineItem: [ {
+    position: 7 ,
+    label: 'RbChoice02'
+  } ]
+  rbchoice02;
+
+  @UI.identification: [ {
+    position: 8 ,
+    label: 'RbChoice03'
+  } ]
+  @UI.lineItem: [ {
+    position: 8 ,
+    label: 'RbChoice03'
+  } ]
+  rbchoice03;
+
+  @UI.identification: [ {
+    position: 9 ,
+    label: 'RbValue01'
+  } ]
+  @UI.lineItem: [ {
+    position: 9 ,
+    label: 'RbValue01'
+  } ]
+  rbvalue01;
+
+  @UI.identification: [ {
+    position: 10 ,
+    label: 'Checkbox01'
+  } ]
+  @UI.lineItem: [ {
+    position: 10 ,
+    label: 'Checkbox01'
+  } ]
+  Checkbox01;
+
+  @UI.identification: [ {
+    position: 11 ,
+    label: 'Approval'
+  } ]
+  Approval;
+}

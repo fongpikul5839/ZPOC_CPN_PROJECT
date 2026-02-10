@@ -1,0 +1,54 @@
+managed implementation in class zbp_i_table_head01 unique;
+strict ( 1 );
+
+define behavior for ZI_TABLE_HEAD01 alias TableHead
+persistent table ztable_head01
+//draft table zglobal_log01
+lock master //total etag change_date
+authorization master ( instance )
+//etag master <field_name>
+{
+  create;
+  update;
+  delete;
+  field ( readonly ) Uuid;
+  association _Table_item01 { create; }
+//  association _Table_item01 { delete; }
+
+  mapping for ztable_head01
+    {
+      Uuid         = uuid;
+      DocumentNo   = document_no;
+      Single01     = single01;
+      Single02     = single02;
+      Comment01    = comment01;
+      Rb_Requestor = rb_requestor;
+      Checkbox01   = checkbox01;
+      Approval     = approval;
+    }
+
+  static action CreateData deep parameter ZA_Param_Ztable_Head01 deep result [0..1] ZA_Param_Ztable_Head01;
+  static action DeleteData deep parameter ZA_Param_Ztable_Head01 deep result [0..1] ZA_Param_Ztable_Head01;
+
+}
+
+define behavior for ZI_TABLE_ITEM01 alias TableItem
+implementation in class zbp_i_item01 unique
+persistent table ztable_item01
+lock dependent by _Table_head01
+authorization dependent by _Table_head01
+//etag master <field_name>
+{
+//  create;
+  update;
+  delete ;
+  field ( readonly ) Uuid;
+  association _Table_head01;
+
+  mapping for ztable_item01
+    {
+      Uuid        = uuid;
+      Itemno      = itemno;
+      Description = description;
+    }
+}

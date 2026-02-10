@@ -1,0 +1,73 @@
+@Metadata.layer: #CUSTOMER
+
+//annotate view ZC_TABLE_HEAD
+annotate entity ZC_TABLE_HEAD with
+{
+  @UI.facet: [{
+      id: 'Header',
+      purpose: #STANDARD,
+      position: 10,
+      label: 'Header Data',
+      type: #IDENTIFICATION_REFERENCE
+   }
+  //    {
+  //        id: 'Item',
+  //        purpose: #STANDARD,
+  //        type: #LINEITEM_REFERENCE,
+  //        position: 20,
+  //        label: 'Item',
+  //        targetElement: '_Table_item'
+  //
+  //    },
+  //    {
+  //        id: 'ItemAttach',
+  //        purpose: #STANDARD,
+  //        type: #LINEITEM_REFERENCE,
+  //        position: 30,
+  //        label: 'Attach',
+  //        targetElement: '_Table_attach'
+  //
+  //    }
+  ]
+
+      @UI.selectionField: [ { position: 10 }]
+      @UI.lineItem: [{ position: 10, importance: #HIGH },
+  // { type: #FOR_ACTION, dataAction: 'ReleasePO', label: 'Release PO' },
+      { type: #FOR_ACTION, dataAction: 'CreateData', label: 'CreateData' }]
+  //    { type: #FOR_ACTION, dataAction: 'DeleteData', label: 'DeleteData' } ]
+  //    { type: #FOR_ACTION, dataAction: 'Create', label: 'Create' }]
+  //@UI.identification: [{ position: 10 }]
+//  @UI:{ lineItem: [{position: 10 }] }
+  @UI.identification: [{ position: 10 }]
+  Uuid;
+  
+  @UI.selectionField: [ { position: 20 }]
+  @UI:{ lineItem: [{position: 20 }] }
+  @UI.identification: [{ position: 20 }]
+  DocumentNo;
+
+  @UI:{ lineItem: [{position: 30 }] }
+  @UI.identification: [{ position: 30 }]
+  Single01;
+
+  @UI:{ lineItem: [{position: 40 }] }
+  @UI.identification: [{ position: 40 }]
+  Single02;
+
+  @UI:{ lineItem: [{position: 50 }] }
+  @UI.identification: [{ position: 50 }]
+  Comment01;
+
+  @UI:{ lineItem: [{position: 60 }] }
+  @UI.identification: [{ position: 60 }]
+  RbRequestor;
+
+  @UI:{ lineItem: [{position: 70 }] }
+  @UI.identification: [{ position: 70 }]
+  Checkbox01;
+
+  @UI:{ lineItem: [{position: 80 }] }
+  @UI.identification: [{ position: 80 }]
+  Approval;
+
+}

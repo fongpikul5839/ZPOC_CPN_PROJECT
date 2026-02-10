@@ -1,0 +1,82 @@
+managed with additional save implementation in class ZBP_I_TABLEHEADER_S unique;
+strict;
+with draft;
+define behavior for ZI_TableHeader_S alias TableHeaderAll
+draft table ZDM_HEAD_D_S
+with unmanaged save
+lock master total etag LastChangedAtMax
+authorization master( global )
+{
+  field ( readonly )
+   SingletonID,
+   TransportRequestID;
+
+  field ( notrigger )
+   SingletonID,
+   HideTransport,
+   LastChangedAtMax;
+
+
+  update;
+  internal create;
+  internal delete;
+
+  draft action ( features : instance ) Edit;
+  draft action Activate optimized;
+  draft action Discard;
+  draft action Resume;
+  draft determine action Prepare;
+  action ( features : instance ) SelectCustomizingTransptReq parameter D_SelectCustomizingTransptReqP result [1] $self;
+
+  association _TableHeader { create ( features : instance ); with draft; }
+
+  validation ValidateTransportRequest on save ##NOT_ASSIGNED_TO_DETACT { create; update; }
+
+  side effects {
+    action SelectCustomizingTransptReq affects $self;
+  }
+
+}
+
+define behavior for ZI_TableHeader alias TableHeader ##UNMAPPED_FIELD
+persistent table ZTABLE_HEAD01
+draft table ZTABLE_HEAD01_D
+lock dependent by _TableHeaderAll
+authorization dependent by _TableHeaderAll
+{
+  field ( mandatory : create )
+   Uuid;
+
+  field ( readonly )
+   SingletonID;
+
+  field ( readonly : update )
+   Uuid;
+
+  field ( notrigger )
+   SingletonID;
+
+
+  update( features : global );
+  delete( features : global );
+
+  mapping for ZTABLE_HEAD01
+  {
+    Uuid = UUID;
+    DocumentNo = DOCUMENT_NO;
+    Single01 = SINGLE01;
+    Single02 = SINGLE02;
+    Comment01 = COMMENT01;
+    RbChoice01 = RB_CHOICE01;
+    RbChoice02 = RB_CHOICE02;
+    RbChoice03 = RB_CHOICE03;
+    RbValue01 = RB_VALUE01;
+    Checkbox01 = CHECKBOX01;
+    Approval = APPROVAL;
+  }
+
+  association _TableHeaderAll { with draft; }
+
+  validation ValidateTransportRequest on save ##NOT_ASSIGNED_TO_DETACT { create; update; delete; }
+
+}

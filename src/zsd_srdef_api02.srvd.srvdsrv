@@ -1,0 +1,10 @@
+@EndUserText.label: 'Service Definition for POC API02'
+define service ZSD_SRDEF_API02 {
+  expose ZC_GLOBAL_HEAD;
+  expose ZC_TABLE_HEAD_API02;
+  expose ZC_TABLE_HEAD_PR;
+  expose ZC_TABLE_ITEM_API02;
+  expose ZC_TABLE_ATTACH_API02;
+  expose ZC_GLOBAL_LOG;
+  expose ZC_TABLE_ITEM_PR;
+}

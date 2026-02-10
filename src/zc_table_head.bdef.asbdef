@@ -1,0 +1,35 @@
+projection;
+strict ( 1 );
+
+define behavior for ZC_TABLE_HEAD //alias <alias_name>
+{
+  use create;
+  use update;
+  use delete;
+
+
+  use action GetData;
+  use action Createdata;
+  use action Deletedata;
+  use action CreatePR;
+  use action DeletePR;
+  use association _Table_attach { create; }
+  use association _Table_item { create; }
+}
+
+define behavior for ZC_TABLE_ATTACH //alias <alias_name>
+{
+  use update;
+  use delete;
+
+  use association _Table_head;
+
+}
+
+define behavior for ZC_TABLE_ITEM //alias <alias_name>
+{
+  use update;
+  use delete;
+
+  use association _Table_head;
+}

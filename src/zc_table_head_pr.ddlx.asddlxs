@@ -1,0 +1,41 @@
+@Metadata.layer: #CUSTOMER
+annotate entity ZC_TABLE_HEAD_PR
+    with 
+{
+  @UI.facet: [{ 
+    id: 'Fieldgroup3-ID',
+    parentId: 'Facet1-ID', 
+    position: 10,
+    label: 'Header PR Detail',
+    targetQualifier: 'Fieldgroup3', 
+    type: #FIELDGROUP_REFERENCE
+//    hidden: #(IsPoHidden)
+  }]
+
+
+  @UI:{ lineItem: [{position: 10 }] }
+  @UI.identification: [{ position: 10 }]
+  //  @UI.fieldGroup: [ { qualifier: 'Fieldgroup1' , position: 10 }]
+  Uuid_pr;
+
+  @UI:{ lineItem: [{position: 20 }] }
+  @UI.identification: [{ position: 20 }]
+  //  @UI.fieldGroup: [ { qualifier: 'Fieldgroup1' , position: 20 , label: 'Document Number'}]
+  DocumentNo_pr;
+  
+  @UI:{ lineItem: [{position: 30 }] }
+  @UI.identification: [{ position: 30 }]
+  @UI.fieldGroup: [ { qualifier: 'Fieldgroup3' , position: 30 , label: 'Comment' }]
+  Comment01;
+ 
+  @UI:{ lineItem: [{position: 40 }] }
+  @UI.identification: [{ position: 40 }]
+  @UI.fieldGroup: [ { qualifier: 'Fieldgroup3' , position: 40 , label: 'Checkbox' }]
+  Checkbox01;
+
+  @UI:{ lineItem: [{position: 50 }] }
+  @UI.identification: [{ position: 50 }]
+  @UI.fieldGroup: [ { qualifier: 'Fieldgroup3' , position: 50 , label: 'Approval' }]
+  Approval;
+    
+}

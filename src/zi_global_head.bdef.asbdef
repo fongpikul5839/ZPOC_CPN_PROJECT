@@ -1,0 +1,162 @@
+managed implementation in class zbp_i_global_head unique;
+strict ( 2 );
+with draft;
+
+define behavior for ZI_GLOBAL_HEAD //alias <alias_name>
+persistent table zglobal_head01
+draft table zglobal_head01_d
+lock master total etag LocalLastChangedAt
+authorization master ( instance )
+etag master LocalLastChangedAt
+//etag master <field_name>
+{
+  create ( authorization : global );
+  update;
+  delete;
+  field ( readonly ) Uuid;
+  association _Table_head01 { create; with draft; }
+  association _Table_head_pr { create; with draft; }
+  association _Table_log { create; with draft; }
+  association _Table_attach { with draft; }
+  association _Table_item01 { with draft; }
+  association _Table_item_pr { with draft; }
+
+  draft action Edit;
+  draft action Activate;
+  draft action Discard;
+  draft action Resume;
+  draft determine action Prepare;
+
+  mapping for zglobal_head01
+    {
+      uuid          = uuid;
+      DocumentNo    = document_no;
+      DocumentType  = document_type;
+      CreateDate    = create_date;
+      CreateTime    = create_time;
+      CreateBy      = create_by;
+      CurrentStatus = current_status;
+    }
+
+}
+
+define behavior for ZI_TABLE_HEAD_API02 //alias <alias_name>
+persistent table ztable_head01
+draft table ztable_head01_d
+etag master LocalLastChangedAt
+lock dependent by _GB_HEAD01
+authorization dependent by _GB_HEAD01
+//etag master <field_name>
+{
+  update;
+  delete;
+  field ( readonly ) Uuid;
+
+
+  association _GB_HEAD01 { with draft; }
+  //  association _Table_log { create; with draft; }
+  association _Table_attach { create; with draft; }
+  association _Table_item01 { create; with draft; }
+
+  mapping for ztable_head01
+    {
+      Uuid       = uuid;
+      DocumentNo = document_no;
+    }
+}
+
+define behavior for ZI_TABLE_ITEM_API02 //alias <alias_name>
+persistent table ztable_item01
+draft table ztable_item01_d
+etag master LocalLastChangedAt
+lock dependent by _GB_HEAD01
+authorization dependent by _GB_HEAD01
+//etag master <field_name>
+{
+  update;
+  delete;
+  field ( readonly ) Uuid, Itemno;
+  association _Table_HEAD01 { with draft; }
+  ancestor association _GB_HEAD01 { with draft; }
+
+  mapping for ztable_item01
+    {
+      Uuid        = uuid;
+      Itemno      = itemno;
+      Description = description;
+    }
+}
+
+define behavior for ZI_GLOBAL_LOG //alias <alias_name>
+persistent table zglobal_log01
+draft table zglobal_log01_d
+etag master LocalLastChangedAt
+lock dependent by _GB_HEAD01
+authorization dependent by _GB_HEAD01
+//etag master <field_name>
+{
+  update;
+  delete;
+  field ( readonly ) Uuid;
+  association _GB_HEAD01 { with draft; }
+//  ancestor association _GB_HEAD01 { with draft; }
+}
+
+define behavior for ZI_TABLE_ATTACH_API02 //alias <alias_name>
+persistent table ztable_attach
+draft table ztable_attach_d
+etag master LocalLastChangedAt
+lock dependent by _GB_HEAD01
+authorization dependent by _GB_HEAD01
+//etag master <field_name>
+{
+  update;
+  delete;
+  field ( readonly ) Uuid, Itemno;
+  association _Table_HEAD01 { with draft; }
+  ancestor association _GB_HEAD01 { with draft; }
+}
+
+
+define behavior for ZI_TABLE_HEAD_PR //alias <alias_name>
+persistent table ztable_head_pr
+draft table ztable_head_pr_d
+etag master LocalLastChangedAt
+lock dependent by _GB_HEAD01
+authorization dependent by _GB_HEAD01
+//etag master <field_name>
+{
+  update;
+  delete;
+  field ( readonly ) Uuid_pr;
+  association _GB_HEAD01 { with draft; }
+  association _Table_item_pr { create; with draft; }
+
+  //    mapping for ztable_head01
+  //    {
+  //      Uuid        = uuid;
+  //      DocumentNo  = document_no;
+  //    }
+}
+
+define behavior for ZI_TABLE_ITEM_PR //alias <alias_name>
+persistent table ztable_item_pr
+draft table ztable_item_pr_d
+etag master LocalLastChangedAt
+lock dependent by _GB_HEAD01
+authorization dependent by _GB_HEAD01
+//etag master <field_name>
+{
+  update;
+  delete;
+  field ( readonly ) UuidPr, Itemno;
+  association _Table_HEAD_PR { with draft; }
+  ancestor association _GB_HEAD01 { with draft; }
+
+  mapping for ztable_item01
+    {
+      UuidPr      = uuid;
+      Itemno      = itemno;
+      Description = description;
+    }
+}

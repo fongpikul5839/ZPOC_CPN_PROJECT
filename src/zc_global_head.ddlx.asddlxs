@@ -1,0 +1,182 @@
+@Metadata.layer: #CUSTOMER
+
+annotate entity ZC_GLOBAL_HEAD with
+{
+  @UI.facet: [
+  //  { id: 'Header',
+  //    purpose: #STANDARD,
+  //    position: 10,
+  //    label: 'Header Data',
+  //    type: #COLLECTION
+  //    },
+  // Facet 1 - Parent (collection) for Fieldgroup 1 and Fieldgroup 2
+    { id: 'Facet1-ID',
+      type: #COLLECTION,
+      label: 'Header Data',
+      position:        10 },
+
+        // Facet for Fieldgroup 1 - nested inside Facet 1
+        { id: 'Fieldgroup1-ID',
+          type:            #FIELDGROUP_REFERENCE,
+          label:           'Global Header',
+          parentId:        'Facet1-ID', // Places this facet into 'Facet 1'
+          targetQualifier: 'Fieldgroup1', // No targetElement defined. Default target is the entity in which the facet is defined.
+          position:         10 },
+
+        // Facet for Fieldgroup 2 - nested inside Facet 1
+        { id: 'Fieldgroup2-ID',
+          type:            #FIELDGROUP_REFERENCE,
+          label:           'Header PO Detail',
+          parentId:        'Facet1-ID', // Places this facet into 'Facet 1'
+          targetElement:   '_Table_head01', // Specifies where the data is retrieved from - UI annotations must be defined in the respective target
+          targetQualifier: 'Fieldgroup2',
+          position:         20,
+          hidden: #(PoHidden2)
+  //          hidden: #(IsPoHidden)
+          },
+
+        // Facet for Fieldgroup 3 - nested inside Facet 1
+        { id: 'Fieldgroup3-ID',
+          type:            #FIELDGROUP_REFERENCE,
+          label:           'Header PR Detail',
+          parentId:        'Facet1-ID', // Places this facet into 'Facet 1'
+          targetElement:   '_Table_head_pr', // Specifies where the data is retrieved from - UI annotations must be defined in the respective target
+          targetQualifier: 'Fieldgroup3',
+          position:         30,
+          hidden: #(PrHidden2)
+  //          hidden: #(IsPrHidden)
+          },
+
+  //    {
+  //        id: 'HEADER01',
+  //        purpose: #STANDARD,
+  //        type: #FIELDGROUP_REFERENCE,
+  //        position: 10,
+  //        label: 'Header Detail',
+  //        targetElement: '_Table_head01'
+  //     },
+      {
+        id: 'ITEM_COL_PO',
+        type: #COLLECTION,
+        label: 'Item PO',
+        position: 20,
+        hidden: #(PoHidden2)
+      },
+      {
+        id: 'ITEM01',
+        parentId: 'ITEM_COL_PO',
+        type: #LINEITEM_REFERENCE,
+        targetElement: '_Table_item01'
+      },
+//     {
+//        id: 'ITEM01',
+//        purpose: #STANDARD,
+//        type: #LINEITEM_REFERENCE,
+//        position: 20,
+//        label: 'Item',
+//        targetElement: '_Table_item01',
+//        hidden: #(PoHidden2)
+//  //        hidden: #(IsPoHidden)
+//      },
+      {
+        id: 'ATTACH_COL',
+        type: #COLLECTION,
+        label: 'Attachment',
+        position: 30,
+        hidden: #(PoHidden2)
+      },
+      {
+        id: 'ATTACH',
+        parentId: 'ATTACH_COL',
+        type: #LINEITEM_REFERENCE,
+        targetElement: '_Table_attach'
+      },
+//      {
+//        id: 'ATTACH',
+//        purpose: #STANDARD,
+//        type: #LINEITEM_REFERENCE,
+//        position: 30,
+//        label: 'Attachment',
+//        targetElement: '_Table_attach',
+//        hidden: #(PoHidden2)
+//  //        hidden: #(IsPoHidden)
+//      },
+      {
+        id: 'ITEM_COL_PR',
+        type: #COLLECTION,
+        label: 'Item PR Doc',
+        position: 40,
+        hidden: #(PrHidden2)
+      },
+      {
+        id: 'ITEMPR',
+        parentId: 'ITEM_COL_PR',
+        type: #LINEITEM_REFERENCE,
+        targetElement: '_Table_item_pr'
+      },
+//      {
+//        id: 'ITEMPR',
+//        purpose: #STANDARD,
+//        type: #LINEITEM_REFERENCE,
+//        position: 40,
+//        label: 'Item PR Doc',
+//        targetElement: '_Table_item_pr',
+//        hidden: #(PrHidden2)
+//  //        hidden: #(IsPrHidden)
+//      },
+      {
+        id: 'LOG',
+        purpose: #STANDARD,
+        type: #IDENTIFICATION_REFERENCE,
+        position: 50,
+        label: 'Global Log',
+        targetElement: '_Table_log'
+      }
+
+    ]
+
+
+  @UI.selectionField: [ { position: 10 }]
+  //  @UI.lineItem: [{ position: 10, importance: #HIGH },
+  // { type: #FOR_ACTION, dataAction: 'ReleasePO', label: 'Release PO' },
+  //  { type: #FOR_ACTION, dataAction: 'CreateData', label: 'CreateData' }]
+  //    { type: #FOR_ACTION, dataAction: 'DeleteData', label: 'DeleteData' } ]
+  //    { type: #FOR_ACTION, dataAction: 'Create', label: 'Create' }]
+  @UI:{ lineItem: [{position: 10 }] }
+  @UI.identification: [{ position: 10 }]
+  @UI.fieldGroup: [ { qualifier: 'Fieldgroup1', position: 10 , label: 'Uuid' }]
+  Uuid;
+
+  @UI.selectionField: [ { position: 20 }]
+  @UI:{ lineItem: [{position: 20 , label: 'Document Number'}] }
+  @UI.identification: [{ position: 20 }]
+  @UI.fieldGroup: [ { qualifier: 'Fieldgroup1', position: 20 , label: 'Document Number' }]
+  DocumentNo;
+
+  @UI.selectionField: [ { position: 30 }]
+  @UI:{ lineItem: [{position: 30 , label: 'Document Type' }] }
+  @UI.identification: [{ position: 30 }]
+  @UI.fieldGroup: [ { qualifier: 'Fieldgroup1', position: 30 , label: 'Document Type'   }]
+  DocumentType;
+
+  @UI:{ lineItem: [{position: 40 , label: 'Current Status' }] }
+  @UI.identification: [{ position: 40 }]
+  @UI.fieldGroup: [ { qualifier: 'Fieldgroup1', position: 40 , label: 'Current Status' }]
+  CurrentStatus;
+
+  @UI:{ lineItem: [{position: 50 , label: 'Create By' }] }
+  @UI.identification: [{ position: 50 }]
+  @UI.fieldGroup: [ { qualifier: 'Fieldgroup1', position: 50 , label: 'Create By' }]
+  CreateBy;
+
+  @UI:{ lineItem: [{position: 60 , label: 'Create Date' }] }
+  @UI.identification: [{ position: 60 }]
+  @UI.fieldGroup: [ { qualifier: 'Fieldgroup1', position: 60 , label: 'Create Date' }]
+  CreateDate;
+
+  @UI:{ lineItem: [{position: 70 , label: 'Create Time' }] }
+  @UI.identification: [{ position: 70 }]
+  @UI.fieldGroup: [ { qualifier: 'Fieldgroup1', position: 70 , label: 'Create Time' }]
+  CreateTime;
+
+}

@@ -1,0 +1,19 @@
+abstract;
+strict ( 2 );
+with hierarchy;
+
+define behavior for ZA_Param_Ztable_Head //alias <alias_name>
+{
+  association _Item;
+  association _Attach;
+}
+
+define behavior for za_param_ztable_item
+{
+  association _Header;
+}
+
+define behavior for za_param_ztable_attach
+{
+  association _Header;
+}

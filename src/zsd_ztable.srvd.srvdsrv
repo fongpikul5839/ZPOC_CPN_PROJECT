@@ -1,0 +1,5 @@
+@EndUserText.label: 'Service Definition for ZC_TABLE_HEAD01'
+define service ZSD_ZTABLE {
+  expose ZC_TABLE_HEAD01;
+  expose ZC_TABLE_ITEM01;
+}

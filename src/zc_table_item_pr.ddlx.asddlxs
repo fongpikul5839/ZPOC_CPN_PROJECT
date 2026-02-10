@@ -1,0 +1,26 @@
+@Metadata.layer: #CUSTOMER
+annotate entity ZC_TABLE_ITEM_PR
+    with 
+{
+  @UI.facet: [{
+      id: 'ITEMPR',
+      purpose: #STANDARD,
+      position: 10,
+      label: 'Item PR Doc',
+      type: #IDENTIFICATION_REFERENCE 
+//      type: #LINEITEM_REFERENCE
+  }]
+
+//  @UI:{ lineItem: [{position: 10 , label: 'Uuid' }] }
+//  @UI.identification: [{ position: 10 , label: 'Uuid' }]
+//  Uuid;
+
+  @UI:{ lineItem: [{position: 20 , label: 'Item Number' }] }
+  @UI.identification: [{ position: 20 , label: 'Item Number' }]
+  Itemno;
+
+  @UI:{ lineItem: [{position: 30 , label: 'Description' }] }
+  @UI.identification: [{ position: 30 , label: 'Description' }]
+  Description;
+       
+}

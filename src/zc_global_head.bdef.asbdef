@@ -1,0 +1,80 @@
+projection;
+strict ( 2 );
+use draft;
+
+define behavior for ZC_GLOBAL_HEAD //alias <alias_name>
+{
+  use create;
+  use update;
+  use delete;
+
+  use action Edit;
+  use action Activate;
+  use action Discard;
+  use action Resume;
+  use action Prepare;
+
+  use association _Table_head01 { create; with draft; }
+  use association _Table_head_pr { create; with draft; }
+  use association _Table_log { create; with draft; }
+  use association _Table_attach { with draft; }
+  use association _Table_item01 { with draft; }
+  use association _Table_item_pr { with draft; }
+}
+
+define behavior for ZC_TABLE_HEAD_API02 //alias <alias_name>
+{
+  use update;
+  use delete;
+
+//  use association _Table_log { create; with draft; }
+  use association _Table_attach { create; with draft; }
+  use association _Table_item01 { create; with draft; }
+
+  use association _GB_HEAD01 { with draft; }
+}
+
+define behavior for ZC_TABLE_ITEM_API02 //alias <alias_name>
+{
+  use update;
+  use delete;
+
+  use association _TABLE_HEAD01{ with draft; }
+  use association _GB_HEAD01 { with draft; }
+}
+
+define behavior for ZC_GLOBAL_LOG //alias <alias_name>
+{
+  use update;
+  use delete;
+
+//  use association _TABLE_HEAD01{ with draft; }
+  use association _GB_HEAD01 { with draft; }
+}
+
+define behavior for ZC_TABLE_ATTACH_API02 //alias <alias_name>
+{
+  use update;
+  use delete;
+
+  use association _TABLE_HEAD01{ with draft; }
+  use association _GB_HEAD01 { with draft; }
+}
+
+define behavior for ZC_TABLE_HEAD_PR //alias <alias_name>
+{
+  use update;
+  use delete;
+
+  use association _GB_HEAD01;
+  use association _Table_item_pr { create; with draft; }
+}
+
+define behavior for ZC_TABLE_ITEM_PR //alias <alias_name>
+{
+  use update;
+  use delete;
+
+  use association _Table_HEAD_PR{ with draft; }
+  use association _GB_HEAD01 { with draft; }
+}

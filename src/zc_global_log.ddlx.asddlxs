@@ -1,0 +1,42 @@
+@Metadata.layer: #CUSTOMER
+annotate entity ZC_GLOBAL_LOG
+    with 
+{
+  @UI.facet: [{
+      id: 'LOG',
+      purpose: #STANDARD,
+      position: 10,
+      label: 'Global Log',
+      type: #IDENTIFICATION_REFERENCE
+  }]
+
+//  @UI:{ lineItem: [{position: 10 }] }
+//  @UI.identification: [{ position: 10 }]
+//  Uuid;
+
+//  @UI:{ lineItem: [{position: 20 }] }
+//  @UI.identification: [{ position: 20 }]
+//  DocumentNo;
+
+  @UI:{ lineItem: [{position: 30 }] }
+  @UI.identification: [{ position: 30 , label: 'Approver Name' }]
+  Approver;
+
+  @UI:{ lineItem: [{position: 40 }] }
+  @UI.identification: [{ position: 40 , label: 'Change Date' }]
+  ChangeDate;
+
+  @UI:{ lineItem: [{position: 50 }] }
+  @UI.identification: [{ position: 50 , label: 'Change Time' }]
+  ChangeTime;
+
+  @UI:{ lineItem: [{position: 60 }] }
+  @UI.identification: [{ position: 60 , label: 'Change User' }]
+  ChangeUser;
+
+  @UI:{ lineItem: [{position: 70 }] }
+  @UI.identification: [{ position: 70 , label: 'Activity' }]
+  Activity;
+}
+
+ 

@@ -1,0 +1,5 @@
+@ObjectModel.leadingEntity.name: 'ZI_TableHeader_S'
+define service ZUI_TABLEHEADER {
+  expose ZI_TABLEHEADER_S as TableHeaderAll;
+  expose ZI_TABLEHEADER as TableHeader;
+}

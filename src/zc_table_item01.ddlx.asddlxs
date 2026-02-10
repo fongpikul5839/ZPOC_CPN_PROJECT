@@ -1,0 +1,24 @@
+@Metadata.layer: #CUSTOMER
+annotate entity ZC_TABLE_ITEM01
+    with 
+{
+    @UI.facet: [{ 
+        id: 'ItemDetail', 
+        purpose: #STANDARD, 
+        position: 10, 
+        label: 'Item Detail', 
+        type: #IDENTIFICATION_REFERENCE 
+    }]
+    
+    @UI:{ lineItem: [{position: 10 }] } 
+    @UI.identification: [{ position: 10 }] 
+    Uuid; 
+    
+    @UI:{ lineItem: [{position: 20 }] } 
+    @UI.identification: [{ position: 20 }] 
+    Itemno;
+    
+    @UI:{ lineItem: [{position: 30 }] } 
+    @UI.identification: [{ position: 30 }] 
+    Description;
+}

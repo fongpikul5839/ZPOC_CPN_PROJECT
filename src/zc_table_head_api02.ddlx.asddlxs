@@ -1,0 +1,57 @@
+@Metadata.layer: #CUSTOMER
+annotate entity ZC_TABLE_HEAD_API02 with
+{
+  @UI.facet: [{
+  //    id: 'HEADER01',
+    id: 'Fieldgroup2-ID',
+    parentId: 'Facet1-ID',
+  //    purpose: #STANDARD,
+    position: 10,
+    label: 'Header PO Detail',
+    targetQualifier: 'Fieldgroup2',
+  //    type: #IDENTIFICATION_REFERENCE
+    type: #FIELDGROUP_REFERENCE
+//    hidden: #(IsPoHidden)
+  }]
+
+
+  @UI:{ lineItem: [{position: 10 }] }
+  @UI.identification: [{ position: 10 }]
+  //  @UI.fieldGroup: [ { qualifier: 'Fieldgroup1' , position: 10 }]
+  Uuid;
+
+  @UI:{ lineItem: [{position: 20 }] }
+  @UI.identification: [{ position: 20 }]
+  //  @UI.fieldGroup: [ { qualifier: 'Fieldgroup1' , position: 20 , label: 'Document Number'}]
+  DocumentNo;
+
+  @UI:{ lineItem: [{position: 30 }] }
+  @UI.identification: [{ position: 30 }]
+  @UI.fieldGroup: [ { qualifier: 'Fieldgroup2' , position: 30 , label: 'Single01' }]
+  Single01;
+
+  @UI:{ lineItem: [{position: 40 }] }
+  @UI.identification: [{ position: 40 }]
+  @UI.fieldGroup: [ { qualifier: 'Fieldgroup2' , position: 40 , label: 'Single02' }]
+  Single02;
+
+  @UI:{ lineItem: [{position: 50 }] }
+  @UI.identification: [{ position: 50 }]
+  @UI.fieldGroup: [ { qualifier: 'Fieldgroup2' , position: 50 , label: 'Comment' }]
+  Comment01;
+
+  @UI:{ lineItem: [{position: 60 }] }
+  @UI.identification: [{ position: 60 }]
+  @UI.fieldGroup: [ { qualifier: 'Fieldgroup2' , position: 60 , label: 'Requestor' }]
+  RbRequestor;
+
+  @UI:{ lineItem: [{position: 70 }] }
+  @UI.identification: [{ position: 70 }]
+  @UI.fieldGroup: [ { qualifier: 'Fieldgroup2' , position: 70 , label: 'Checkbox' }]
+  Checkbox01;
+
+  @UI:{ lineItem: [{position: 80 }] }
+  @UI.identification: [{ position: 80 }]
+  @UI.fieldGroup: [ { qualifier: 'Fieldgroup2' , position: 80 , label: 'Approval' }]
+  Approval;
+}
